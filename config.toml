@@ -1,0 +1,27 @@
+baseURL = "http://localhost/"
+languageCode = "en-us"
+title = "Redshift Immersion Day Labs"
+theme = "learn"
+#sectionPagesMenu = "main"
+#pygmentsCodeFences = true
+
+[params]
+themeVariant = "mine"
+showVisitedLinks = false
+author = "Concorde Habineza"
+description = "Redshift Immersion Day Labs"
+ordersectionsby = "weight"
+disableSearch = false
+disableAssetsBusting = false
+
+disableInlineCopyToClipBoard = false
+disableShortcutsTitle = false
+disableLanguageSwitchingButton = false
+disableBreadcrumb = true
+disableNextPrev = true
+chapter = true
+
+# For search functionality
+[outputs]
+home = [ "HTML",  "RSS", "JSON"]
+page = [ "HTML"]

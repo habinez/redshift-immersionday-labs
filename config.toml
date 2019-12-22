@@ -25,3 +25,9 @@ chapter = true
 [outputs]
 home = [ "HTML",  "RSS", "JSON"]
 page = [ "HTML"]
+
+[deployment]
+order = [".jpg$", ".gif$"]
+
+[[deployment.targets]]
+URL = "s3://<Bucket Name>?region=us-east-2"

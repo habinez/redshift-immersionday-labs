@@ -4,17 +4,21 @@ weight: 8
 ---
 
 ## Configure Client Tool
-* See [Prerequisites](../prerequisites) for more details on downloading and installing [SQL Workbench/J](http://www.sql-workbench.net) and the [Redshift JDBC Driver](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html). 
-* Launch SQL Workbench/J and navigate to [File | Manage Drivers].
-* Select "Amazon Redshift" and set the driver Library location to where you downloaded the Redshift JDBC Driver. Click Ok.
-![](/images/Library.png)
-* Navigate to [File | Connect Window] to create a new connection profile and modify the following settings and once complete click on the "Test Connection" button.
-  * Name - "LabConnection"
-  * Driver - Amazon Redshift (com.amazon.redshift.jdbc.Driver)
-  * URL - Find this by navigating to the [Cluster List](https://console.aws.amazon.com/redshift/home?cluster-details:#cluster-list:), selecting your cluster, and copying the JDBC URL.  
+
+* See [Prerequisites](../prerequisites) for more details on downloading and installing [DBeaver](https://dbeaver.io/) and the [Redshift JDBC Driver](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-to-cluster.html). 
+* Launch DBeaver and navigate to [Database | New Database Connection].
+* Search for "Redshift" and set the driver Library location to where you downloaded the Redshift JDBC Driver. Click Ok.
+![](/images/Library-dbeaver.png)
+* Select the presented option and click "Next"
+* Find this by navigating to the [Cluster List](https://console.aws.amazon.com/redshift/home?cluster-details:#cluster-list:), selecting your cluster, and copying the JDBC URL. The URL is formed by as {host}:{port}/{database}  
   ![](/images/JDBCUrl.png)
-  * Username - [Master user name]
+  * Host: [Cluster host name from endpoint]
+  * Port: -[5439]
+  * User - [Master user name]
   * Password - [Master user password]
-  * Autocommit - Enabled
-  
-![](/images/Connection.png)
+
+![](/images/JDBCURL-dbeaver.png)
+
+* Click on the "Test Connection" button.
+
+* Click Finish

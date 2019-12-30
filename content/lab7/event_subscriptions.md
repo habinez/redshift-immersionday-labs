@@ -7,10 +7,8 @@ weight: 72
 
 
 ## Event Subscriptions
-1. Navigate to your Redshift Events page.  Notice the *Events* involved with creating the cluster.  
-```
-https://console.aws.amazon.com/redshift/home?#events:cluster=
-``` 
+1. Navigate to your [Redshift Events page](https://console.aws.amazon.com/redshift/home?#events:cluster=).  Notice the *Events* involved with creating the cluster.  
+
 ![](/images/Events.png) 
 
 2. Click on the *Subscriptions* tab and then click on the *Create Event Subscription* button.

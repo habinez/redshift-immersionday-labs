@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "Redshift Immersion Day Labs"
 theme = "learn"
 #sectionPagesMenu = "main"
-#pygmentsCodeFences = true
+pygmentsCodeFences = true
 
 [params]
 themeVariant = "mine"
@@ -14,10 +14,10 @@ ordersectionsby = "weight"
 disableSearch = false
 disableAssetsBusting = false
 
-disableInlineCopyToClipBoard = false
+disableInlineCopyToClipBoard = true
 disableShortcutsTitle = false
 disableLanguageSwitchingButton = false
-disableBreadcrumb = true
+disableBreadcrumb = false
 disableNextPrev = false
 chapter = true
 

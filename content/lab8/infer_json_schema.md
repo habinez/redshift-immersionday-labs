@@ -3,11 +3,9 @@ title: "Infer JSON Schema"
 weight: 82
 ---
 
-
-## Infer JSON Schema
 We will create AWS Glue crawler to infer the JSON dataset
 
-1. Navigate to the Glue Crawler Page. https://console.aws.amazon.com/glue/home?#catalog:tab=crawlers.  Click on *Add crawler*.
+1. Navigate to the [Glue Crawler Page](https://console.aws.amazon.com/glue/home?#catalog:tab=crawlers).  Click on *Add crawler*.
 ![](/images/lab8_crawler01.png)
 
 2. Name the crawler *nested-json* and click *Next*

@@ -3,8 +3,7 @@ title: "Before You Begin"
 weight: 80
 ---
 
-## Before You Begin
-This lab assumes you have launched a Redshift cluster in US-WEST-2 (Oregon), and can gather the following information. If you have not launched a cluster, see [LAB 1 - Creating Redshift Clusters](../lab1/README.md).
+This lab assumes you have launched a Redshift cluster in US-WEST-2 (Oregon), and can gather the following information. If you have not launched a cluster, see [LAB 1 - Creating Redshift Clusters](../../lab1/cloudformation).
 * [Your-Redshift_Hostname]
 * [Your-Redshift_Port]
 * [Your-Redshift_Username]
@@ -13,5 +12,4 @@ This lab assumes you have launched a Redshift cluster in US-WEST-2 (Oregon), and
 * [Your-AWS-Account_Id]
 * [Your-Glue_Role]
 
-It also assumes you have access to a configured client tool. For more details on configuring SQL Workbench/J as your client tool, see [Lab 1 - Creating Redshift Clusters : Configure Client Tool](../lab1/README.md#configure-client-tool). As an alternative you can use the Amazon Redshift provided online Query Editor which does not require an installation.
-
+It also assumes you have access to a configured client tool. For more details on configuring Dbeaver as your client tool, see [Lab 1 - Creating Redshift Clusters : Configure Client Tool](../../lab1/configure_client_tool). As an alternative you can use the Redshift provided online [Query Editor](https://console.aws.amazon.com/redshift/home?#query) which does not require an installation.

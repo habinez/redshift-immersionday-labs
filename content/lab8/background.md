@@ -3,7 +3,6 @@ title: "Background"
 weight: 81
 ---
 
-## Background
 Nested data support enables Redshift customers to directly query their nested data from Redshift through Spectrum.  Customers already have nested data in their Amazon S3 data lake.  For example, commonly java applications often use JSON as a standard for data exchange. Redshift Spectrum supports nested data types for the following format
 * Apache Parquet
 * Apache ORC

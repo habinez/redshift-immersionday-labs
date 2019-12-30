@@ -3,14 +3,12 @@ title: "Create a Single Version of Truth"
 weight: 44
 ---
 
-## Create a Single Version of Truth
 In the next part of this lab, we will demonstrate how to create a view which has data that is consolidated from S3 via Spectrum and the Redshift direct-attached storage.
 
 ### Create a view 
 Create a view that covers both the January, 2016 Green company DAS table with the historical data residing on S3 to make a single table exclusively for the Green data scientists. Use CTAS to create a table with data from January, 2016 for the Green company. Compare the runtime to populate this with the COPY runtime earlier.
 
-<details><summary>Hint</summary>
-<p>
+
 
 ```sql
 CREATE TABLE workshop_das.taxi_201601 AS 
@@ -18,19 +16,14 @@ SELECT * FROM adb305.ny_pub
 WHERE year = 2016 AND month = 1 AND type = 'green';
 ```
 
-</p>
-</details>
-
-Note: What about column compression/encoding? Remember that on a CTAS, Amazon Redshift automatically assigns compression encoding as follows:
+{{% notice note %}}
+What about column compression/encoding? Remember that on a [CTAS](https://docs.aws.amazon.com/redshift/latest/dg/r_CTAS_usage_notes.html), Amazon Redshift automatically assigns compression encoding as follows:
 
 * Columns that are defined as sort keys are assigned RAW compression.
 * Columns that are defined as BOOLEAN, REAL, or DOUBLE PRECISION data types are assigned RAW compression.
 * All other columns are assigned LZO compression.
 
-```javascript
-https://docs.aws.amazon.com/redshift/latest/dg/r_CTAS_usage_notes.html 
-
-```
+{{% /notice %}}
 
 ```sql
 ANALYZE COMPRESSION workshop_das.taxi_201601
@@ -57,8 +50,7 @@ Here's the output in case you want to use it:
 ### Complete populating the table 
 Add to the January, 2016 table with an INSERT/SELECT statement for the other taxi companies.
 
-<details><summary>Hint</summary>
-<p>
+
 
 ```sql
 INSERT INTO workshop_das.taxi_201601 (
@@ -67,14 +59,8 @@ INSERT INTO workshop_das.taxi_201601 (
   WHERE year = 2016 AND month = 1 AND type != 'green');
 ```
 
-</p>
-</details>
-
 ### Remove overlaps in the Spectrum table 
 Now that we've loaded all January, 2016 data, we can remove the partitions from the Spectrum table so there is no overlap between the direct-attached storage (DAS) table and the Spectrum table.
-
-<details><summary>Hint</summary>
-<p>
 
 ```sql
 ALTER TABLE adb305.ny_pub DROP PARTITION(year=2016, month=1, type='fhv'); 
@@ -82,15 +68,12 @@ ALTER TABLE adb305.ny_pub DROP PARTITION(year=2016, month=1, type='green');
 ALTER TABLE adb305.ny_pub DROP PARTITION(year=2016, month=1, type='yellow'); 
 ```
 
-</p>
-</details>
+
 
 
 ### Create a view with no Schema Binding
 Create a view **adb305_view_NYTaxiRides** from **workshop_das.taxi_201601** that allows seamless querying of the DAS and Spectrum data.
 
-<details><summary>Hint</summary>
-<p>
 
 ```sql
 CREATE VIEW adb305_view_NYTaxiRides AS
@@ -100,9 +83,6 @@ CREATE VIEW adb305_view_NYTaxiRides AS
 WITH NO SCHEMA BINDING;
 
 ```
-
-</p>
-</details>
 
 ### Is it Surprising this is valid SQL?
 

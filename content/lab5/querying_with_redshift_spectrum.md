@@ -64,30 +64,30 @@ CREATE EXTERNAL DATABASE IF NOT EXISTS;
 
 4. Use the AWS Glue Crawler to create your external table clickstream.clickstream-csv10 and clickstream.clickstream-parquet1  under locations s3://redshift-spectrum-bigdata-blog-datasets/clickstream-csv10 and s3://redshift-spectrum-bigdata-blog-datasets/clickstream-parquet1 respectively.
 
-	1. Navigate to the **Glue Crawler Page**. https://console.aws.amazon.com/glue/home?#catalog:tab=crawlers 
-	![](../images/crawler_0.png)
-	1. Click on *Add Crawler*, and enter the crawler name *clickstream* and click *Next*. 
-	![](../images/crawler_1_clickstream.png)
+	1. Navigate to the **[Glue Crawler Page](https://console.aws.amazon.com/glue/home?#catalog:tab=crawlers)**
+	![](/images/crawler_0.png)
+	2. Click on *Add Crawler*, and enter the crawler name *clickstream* and click *Next*. 
+	![](/images/crawler_1_clickstream.png)
 	1. Select *Data stores* as the source type and click *Next*. 
-	![](../images/crawler_2.png)
+	![](/images/crawler_2.png)
 	1. Choose *S3* as the data store and the include path of *s3://redshift-immersionday-labs/data/clickstream* 
-	![](../images/crawler_3_clickstream.png)
+	![](/images/crawler_3_clickstream.png)
 	1. *Choose an existing IAM Role* and select a Role which Glue can assume and which has access to S3.  If you don't have a Glue Role, you can also select *Create an IAM role*. 
-	![](../images/crawler_4_clickstream.png)
+	![](/images/crawler_4_clickstream.png)
 	1. Select *Run on demand* for the frequency. 
-	![](../images/crawler_5.png)
+	![](/images/crawler_5.png)
 	1. Select the Database *clickstream* from the list. 
-	![](../images/crawler_6_clickstream.png)
+	![](/images/crawler_6_clickstream.png)
 	1. Select all remaining defaults. Once the Crawler has been created, click on *Run Crawler*. 
-	![](../images/crawler_7_clickstream.png)
+	![](/images/crawler_7_clickstream.png)
 	1. Once the Crawler has completed its run, you will see two new tables in the Glue Catalog. https://console.aws.amazon.com/glue/home?#catalog:tab=tables 
-	![](../images/crawler_8_clickstream.png)
+	![](/images/crawler_8_clickstream.png)
 	1. Click on the *uservisits_parquet1* table. Notice the recordCount of 3.8 billion. 
-	![](../images/crawler_9_clickstream.png)
+	![](/images/crawler_9_clickstream.png)
 	1. Navigate back to the Glue Catalog https://console.aws.amazon.com/glue/home?#catalog:tab=tables.  Click on the *uservisits_csv10* table. Notice the column names have not been set. Also notice that field *col0* is set to a datatype of *String*.  This field represents *adRevenue* and should be set as a datatype of *double*.  
-	![](../images/crawler_10_clickstream.png)
+	![](/images/crawler_10_clickstream.png)
 	1. Click on *Edit Schema* and adjust the column names and datatypes. Click *Save*. 
-	![](../images/crawler_11_clickstream.png)
+	![](/images/crawler_11_clickstream.png)
 
 5. Navigate back to your SQL Client tool and run the query below. This query performs a join between dimension tables in Redshift, and the clickstream fact table in S3 effectively blending data from the data Lake and data warehouse. This query returns the total ad revenue in the last 3 months of our dataset by market segment for customers 1 to 3. The ad revenue data originates from S3 while the customer and time attributes like market segment originate from the dimension tables in Redshift.
 

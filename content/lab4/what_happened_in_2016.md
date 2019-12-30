@@ -3,20 +3,15 @@ title: "What Happened in 2016"
 weight: 42
 ---
 
-## What Happened in 2016
 In the first part of this lab, we will perform the following activities:
 * Load the Green company data for January 2016 into Redshift direct-attached storage (DAS) with COPY.
 * Collect supporting/refuting evidence for the impact of the January, 2016 blizzard on taxi usage.
-* The CSV data is by month on Amazon S3. Here's a quick screenshot from the S3 console: 
-```javascript
-https://s3.console.aws.amazon.com/s3/buckets/us-west-2.serverless-analytics/NYC-Pub/green/?region=us-west-2&tab=overview&prefixSearch=green_tripdata_2016
-```
+* The CSV data is by month on Amazon S3 ([link](https://s3.console.aws.amazon.com/s3/buckets/us-west-2.serverless-analytics/NYC-Pub/green/?region=us-west-2&tab=overview&prefixSearch=green_tripdata_2016)). Here's a quick screenshot from the S3 console: 
+
 ![](/images/green_2016.png)
 
-* Here's Sample data from one file which can be previewed directly in the S3 console:
-```
-https://s3.console.aws.amazon.com/s3/object/us-west-2.serverless-analytics/NYC-Pub/green/green_tripdata_2013-08.csv?region=us-west-2&tab=select
-```
+* Here's Sample data from one file which can be previewed directly in the S3 [console](https://s3.console.aws.amazon.com/s3/object/us-west-2.serverless-analytics/NYC-Pub/green/green_tripdata_2013-08.csv?region=us-west-2&tab=select):
+
 ![](/images/green_preview.png)
 	
 	
@@ -57,14 +52,11 @@ DISTSTYLE EVEN
 SORTKEY (passenger_count,pickup_datetime);
 ```
 
-</p>
-</details>
+
 
 ### Build your Copy Command 
 * Build your copy command to copy the data from Amazon S3. This dataset has the number of taxi rides in the month of January 2016.
 
-<details><summary>Hint</summary>
-<p>
 
 ```sql
 COPY workshop_das.green_201601_csv
@@ -77,29 +69,22 @@ IGNOREBLANKLINES
 REGION 'us-west-2'
 ;
 ```
-</p>
-</details>
 
 * Determine how many rows you just loaded.
 
-<details><summary>Hint</summary>
-<p>
 	
 ```sql
 select count(1) from workshop_das.green_201601_csv;
 --1445285
 ```
 
-</p>
-</details>
+{{% notice tip %}}
 
-**HINT: The `[Your-Redshift_Role]` and `[Your-AWS-Account_Id]` in the above command should be replaced with the values determined at the beginning of the lab.**
+The `[Your-Redshift_Role]` and `[Your-AWS-Account_Id]` in the above command should be replaced with the values determined at the beginning of the lab.
 
+{{% /notice %}}
 ### Pin-point the Blizzard 
 In this month, there is a date which had the lowest number of taxi rides due to a blizzard. Can you find that date?
-
-<details><summary>SQL-Based Hint</summary>
-<p>
 
 ```sql
 SELECT TO_CHAR(pickup_datetime, 'YYYY-MM-DD'),
@@ -108,6 +93,3 @@ FROM workshop_das.green_201601_csv
 GROUP BY 1
 ORDER BY 1;
 ```
-
-</p>
-</details>

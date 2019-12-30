@@ -3,8 +3,6 @@ title: "Result Set Caching and Execution Plan Reuse"
 weight: 34
 ---
 
-
-## Result Set Caching and Execution Plan Reuse
 Redshift enables a result set cache to speed up retrieval of data when it knows that the data in the underlying table has not changed.  It can also re-use compiled query plans when only the predicate of the query has changed.
 
 1. Execute the following query and note the query execution time.  Since this is the first execution of this query Redshift will need to compile the query as well as cache the result set.

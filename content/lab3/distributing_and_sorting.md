@@ -166,7 +166,7 @@ c_regionname = 'ASIA'
 GROUP BY c_mktsegment;
 ```
 
-12. Analyze the performances of each query. This query gets the 3 last queries ran against the database. The results go up to around 75% query time improvement with the right distribution, sort and compression schemes (orders_v1 vs orders_v2).  The ALL distribution (v3) should really be used only if a dimension table cannot be collocated with the fact table or other important joining tables, you can improve query performance significantly by distributing the entire table to all of the nodes. Using ALL distribution multiplies storage space requirements and increases load times and maintenance operations, so you should weigh all factors before choosing ALL distribution. (The numbers will vary depending on the cluster topology)
+12. Analyze the performances of each query. This query gets the 3 last queries ran against the database. The results go up to around 75% query time improvement with the right distribution, sort and compression schemes (orders_v1 vs orders_v2).  
 
 ```sql
 SELECT query, TRIM(querytxt) as SQL, starttime, endtime, DATEDIFF(microsecs, starttime, endtime) AS duration
@@ -175,3 +175,9 @@ WHERE TRIM(querytxt) like '%orders_v%JOIN%'
 ORDER BY starttime DESC
 LIMIT 3;
 ```
+
+{{% notice tip %}}
+The ALL distribution (v3) should really be used only if a dimension table cannot be collocated with the fact table or other important joining tables, you can improve query performance significantly by distributing the entire table to all of the nodes. 
+Using ALL distribution multiplies storage space requirements and increases load times and maintenance operations, so you should weigh all factors before choosing ALL distribution. (The numbers will vary depending on the cluster topology)
+
+{{% /notice %}}

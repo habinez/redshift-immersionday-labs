@@ -3,8 +3,6 @@ title: "Compressing and De-Normalizing"
 weight: 32
 ---
 
-
-## Compressing and De-Normalizing
 ### Standard layout
 Redshift operates on high amounts of data. In order to optimize Redshift workloads, one of the key principles is to lower the amount of data stored. Diminishing this volume is achieved by using a set of compression algorithms. Instead of working on entire rows of data, containing values of different types and function, Redshift operates in a columnar fashion, this gives the opportunity to implement algorithms that can operate on single columns of data, thus greatly enhancing their efficiency. In this example we will load data into a table and test what compression scheme can be used.
 

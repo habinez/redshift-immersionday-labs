@@ -4,12 +4,10 @@ weight : 73
 ---
 
 ## Cluster Encryption
-Note: This portion of the lab will take ~45 minutes to complete based on the data loaded in [LAB 2 - Creating Redshift Clusters](../lab2/README.md).  Please plan accordingly.
+Note: This portion of the lab will take ~45 minutes to complete based on the data loaded in [LAB 2 - Creating Redshift Clusters](../../lab2/cloudformation).  Please plan accordingly.
 
-1. Navigate to your Redshift Cluster list.  Select your cluster and click on *Cluster* -> *Modify Cluster*.
-```
-https://console.aws.amazon.com/redshift/home?#cluster-list
-```
+1. Navigate to your [Redshift Cluster list](https://console.aws.amazon.com/redshift/home?#cluster-list).  Select your cluster and click on *Cluster* -> *Modify Cluster*.
+
 ![](/images/ModifyCluster.png)
 
 2. Select *KMS* for the database encryption and then click *Modify*.

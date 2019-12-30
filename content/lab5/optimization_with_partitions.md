@@ -3,14 +3,12 @@ title: "Optimizing With Partitions"
 weight: 54
 ---
 
-In this section, you will learn about partitions, and how they can be used to improve the performance of your Redshift Spectrum queries.  Partitioning is a key means to improving scan efficiency. Previously, we ran the glue crawler which created our external tables along with partitions. Navigate back to the Glue Catalog https://console.aws.amazon.com/glue/home?#catalog:tab=tables.  Click on the *uservisits_csv10* table. The columns *customer* and *visityearmonth* are set as the partition keys.
+In this section, you will learn about partitions, and how they can be used to improve the performance of your Redshift Spectrum queries.  Partitioning is a key means to improving scan efficiency. Previously, we ran the glue crawler which created our external tables along with partitions. Navigate back to the [Glue Catalog](https://console.aws.amazon.com/glue/home?#catalog:tab=tables).  Click on the *uservisits_csv10* table. The columns *customer* and *visityearmonth* are set as the partition keys.
 
 ![](/images/crawler_11_clickstream.png)
 
 If you have interest in understanding the details of how partitions were setup, refer to the [documentation](http://docs.aws.amazon.com/redshift/latest/dg/c-spectrum-external-tables.html).  You may explore the S3 buckets that are serving our Redshift Spectrum datasets by navigating to the following location: 
-```
-https://s3.console.aws.amazon.com/s3/buckets/redshift-immersionday-labs/data/clickstream/uservisits_csv10/
-```
+[s3://redshift-immersionday-labs/data/clickstream/uservisits_csv10/](https://s3.console.aws.amazon.com/s3/buckets/redshift-immersionday-labs/data/clickstream/uservisits_csv10/)
 
 The entire 3.8 billion-row dataset is organized as a collection of large files where each file contains data exclusive to a particular customer and month in a year. This allows you to partition your data into logical subsets by customer and year/month as exemplified above. With partitions, the query engine can target a subset of files:
 * Only for specific customers

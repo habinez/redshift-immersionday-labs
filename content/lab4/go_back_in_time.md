@@ -3,27 +3,26 @@ title: "Go Back in Time"
 weight: 43
 ---
 
-## Go Back in Time
 In the next part of this lab, we will perform the following activities:
 * Query historical data residing on S3 by create an external DB for Redshift Spectrum.
 * Introspect the historical data, perhaps rolling-up the data in novel ways to see trends over time, or other dimensions.
 * Enforce reasonable use of the cluster with Redshift Spectrum-specific Query Monitoring Rules (QMR).
-	* Test the QMR setup by writing an excessive-use query.
+* Test the QMR setup by writing an excessive-use query.
 
-**Note the partitioning scheme is Year, Month, Type (where Type is a taxi company). Here's a quick Screenshot:**
+{{% notice note %}}
+The partitioning scheme is Year, Month, Type (where Type is a taxi company). Here's a quick Screenshot:**
+{{% /notice %}}
 
-```javascript
-https://s3.console.aws.amazon.com/s3/buckets/serverless-analytics/canonical/NY-Pub/?region=us-east-1&tab=overview
-```
+
+[s3://serverless-analytics/canonical/NY-Pub](https://s3.console.aws.amazon.com/s3/buckets/serverless-analytics/canonical/NY-Pub/?region=us-east-1&tab=overview)
 ![](/images/canonical_year.png)
 
-```javascript
-https://s3.console.aws.amazon.com/s3/buckets/serverless-analytics/canonical/NY-Pub/year%253D2016/month%253D1/?region=us-east-1&tab=overview
-```
+[s3://serverless-analytics/canonical/NY-Pub/year=2016](https://s3.console.aws.amazon.com/s3/buckets/serverless-analytics/canonical/NY-Pub/year%253D2016/month%253D1/?region=us-east-1&tab=overview)
+
 ![](/images/canonical_month.png)
-```javascript
-https://s3.console.aws.amazon.com/s3/buckets/serverless-analytics/canonical/NY-Pub/year%253D2016/month%253D1/type%253Dgreen/?region=us-east-1&tab=overview
-```
+
+[s3://serverless-analytics/canonical/NY-Pub/year=2016/month=1](https://s3.console.aws.amazon.com/s3/buckets/serverless-analytics/canonical/NY-Pub/year%253D2016/month%253D1/type%253Dgreen/?region=us-east-1&tab=overview)
+
 ![](/images/canonical_type.png)
 
 
@@ -79,19 +78,12 @@ ORDER BY 1;
 
   
 ### Add a Redshift Spectrum Query Monitoring Rule to ensure reasonable use
-In Amazon Redshift workload management (WLM), query monitoring rules define metrics-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries. Setup a Query Monitoring Rule to ensure reasonable use.
+In Amazon Redshift workload management (WLM), query monitoring rules define metrics-based performance boundaries for WLM queues and specify what action to take when a query goes beyond those boundaries. Please read the [Setup a Query Monitoring Rule](https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html) to ensure reasonable use.
 
-```javascript
-https://docs.aws.amazon.com/redshift/latest/dg/cm-c-wlm-query-monitoring-rules.html
-```
-Take a look at SVL_QUERY_METRICS_SUMMARY view shows the maximum values of metrics for completed queries. This view is derived from the STL_QUERY_METRICS system table. Use the values in this view as an aid to determine threshold values for defining query monitoring rules.
 
-```javascript
-https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_METRICS_SUMMARY.html
-```
+Take a look at [SVL_QUERY_METRICS_SUMMARY](https://docs.aws.amazon.com/redshift/latest/dg/r_SVL_QUERY_METRICS_SUMMARY.html) view shows the maximum values of metrics for completed queries. This view is derived from the STL_QUERY_METRICS system table. Use the values in this view as an aid to determine threshold values for defining query monitoring rules.
 
-Quick Note on QLM: The WLM configuration properties are either dynamic or static. Dynamic properties can be applied to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect. Additional info here:
 
-```javascript
-https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html
-```
+{{% notice note %}}
+The WLM configuration properties are either dynamic or static. Dynamic properties can be applied to the database without a cluster reboot, but static properties require a cluster reboot for changes to take effect. Additional info [here](https://docs.aws.amazon.com/redshift/latest/mgmt/workload-mgmt-config.html)
+{{% /notice %}}

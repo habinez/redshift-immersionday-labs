@@ -3,9 +3,6 @@ title: "Load JSON data using Redshift Spectrum"
 weight: 86
 ---
 
-
-
-## Load JSON data using Redshift Spectrum
 Let’s leverage Redshift Spectrum to ingest JSON data set in Redshift local tables. This is one usage pattern to leverage Redshift Spectrum for ELT. We will also join Redshift local tables to external tables in this example.
 
 1. Create Redshift local staging tables.

@@ -3,7 +3,6 @@ title: "Plan for the Future"
 weight: 46
 ---
 
-
 In this final part of this lab, we will compare different strategies for maintaining more recent or *HOT* data within Redshift direct-attached storage, and keeping older *COLD* data in S3 by performing the following steps:
 * Allow for trailing 5 quarters reporting by adding the Q4 2015 data to Redshift DAS:
 	* Anticipating that we’ll want to ”age-off” the oldest quarter on a 3 month basis, architect your DAS table to make this easy to maintain and query.

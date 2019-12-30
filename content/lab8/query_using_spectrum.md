@@ -4,8 +4,6 @@ weight: 85
 ---
 
 
-## Query JSON data using Redshift Spectrum
-
 1. Login to Redshift and create external schema
 
 ```sql
@@ -78,7 +76,7 @@ SELECT cust.c_name,
 FROM nested_json.cusnested_json cust,
            cust.orders.order co;
 ```
-![](/images/lab8_query3.png></td></tr></table>
+![](/images/lab8_query3.png)
 
 5. Further un-nest lineitems by using a left join.
 
